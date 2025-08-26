@@ -24,6 +24,10 @@ class MicropostsController < ApplicationController
     end
   end
 
+  def latest
+    @microposts = Micropost.latest(current_user)
+  end 
+
   private
 
     def micropost_params
@@ -35,3 +39,5 @@ class MicropostsController < ApplicationController
       redirect_to root_url, status: :see_other if @micropost.nil?
     end
 end
+
+
