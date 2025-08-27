@@ -5,4 +5,11 @@
     | <%= link_to "delete", user, data: { "turbo-method": :delete,
                                           turbo_confirm: "You sure?" } %>
   <% end %>
+  <h4><%= user.introduction.present? ? user.introduction : "自己紹介はまだありません" %></h4>
+
+  <!-- フォロー数 / フォロワー数 -->
+  <small class="text-muted">
+    <%= pluralize(user.following.count, "following") %> /
+    <%= pluralize(user.followers.count, "follower") %>
+  </small>
 </li>
