@@ -3,7 +3,7 @@ class Micropost < ApplicationRecord
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]
   end
-  default_scope -> { order(created_at: :desc) }
+  default_scope -> { order(pinned: :desc, created_at: :desc) }
   scope :following, ->(current_user) { where(user: current_user.following) }
   scope :latest, ->(current_user) { following(current_user).order(created_at: :desc).limit(10) }
   validates :user_id, presence: true
