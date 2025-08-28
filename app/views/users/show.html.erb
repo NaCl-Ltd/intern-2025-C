@@ -4,7 +4,7 @@
     <section>
       <h1>
         <%= gravatar_for @user %>
-        <%= @user.name %>
+        <%= @user.name %><%= "('ω')" if @user.official_mark %>
       </h1>
     </section>
     <section class="stats">
