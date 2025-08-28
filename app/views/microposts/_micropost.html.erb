@@ -9,15 +9,31 @@
   </span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-    <% if current_user?(micropost.user) %>
-      <%= link_to "delete", micropost, data: { "turbo-method": :delete,
+
+    <div class="actions">
+      <% if current_user?(micropost.user) %>
+        <%= link_to "delete", micropost, data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
-      |
-       <% if micropost.pinned? %>
-        <%= button_to "固定解除", unpin_micropost_path(micropost), method: :patch, class: "btn btn-sm" %>
-       <% else %>
-        <%= button_to "固定する", pin_micropost_path(micropost), method: :patch, class: "btn btn-sm" %>
+        |
+        <% if micropost.pinned? %>
+          <%= button_to "固定解除", unpin_micropost_path(micropost), method: :patch, class: "btn btn-sm" %>
+        <% else %>
+          <%= button_to "固定する", pin_micropost_path(micropost), method: :patch, class: "btn btn-sm" %>
+        <% end %>
       <% end %>
-    <% end %>
+
+      <% if current_user.liked_microposts.include?(micropost) %>
+        <%= button_to micropost_like_path(micropost, micropost.likes.find_by(user: current_user)), method: :delete, class: "like-button" do %>
+          <i class="fa-solid fa-heart fa-lg"></i>
+        <% end %>
+      <% else %>
+        <%= button_to micropost_likes_path(micropost), class: "like-button" do %>
+          <i class="fa-regular fa-heart fa-lg"></i>
+        <% end %>
+      <% end %>
+      
+      <span class="likes-count"><%= micropost.likes.count %></span>
+    </div>
+
   </span>
 </li>

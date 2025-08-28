@@ -317,3 +317,32 @@ span.image {
     border: 0;
   }
 }
+
+.like-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.fa-solid.fa-heart {
+  color: #ff5a5f; // 赤色など好きな色に
+}
+
+.fa-regular.fa-heart {
+  color: #a6a6a6; // 灰色など
+}
+
+.actions {
+  display: flex; /* Flexboxを有効にする */
+  align-items: center; /* 要素を垂直方向の中央に揃える */
+  gap: 10px; /* 要素間の間隔を空ける */
+  margin-top: 5px; /* 上部に少し余白を作る */
+}
+
+/* （任意）いいね数のスタイルを調整 */
+.likes-count {
+  font-size: 0.9em;
+  color: #666;
+}
