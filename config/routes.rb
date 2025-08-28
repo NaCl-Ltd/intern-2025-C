@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/create'
+  get 'likes/destroy'
   get 'password_resets/new'
   get 'password_resets/edit'
   root   "static_pages#home"
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy] do
+      resources :likes, only: [:create, :destroy]
     collection do
       get :latest
       end
