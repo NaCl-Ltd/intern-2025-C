@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # official_markがtrueならユーザー名末尾に('ω')を付与
+  def name_with_mark
+    official_mark ? "#{name}('ω')" : name
+  end
   has_many :microposts, dependent: :destroy
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",
